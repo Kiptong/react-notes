@@ -14,25 +14,29 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function Note(props) {
   return _react2.default.createElement(
     "div",
-    { className: "card" },
+    { className: "col-sm-6 col-md-4 col-lg-3 mt-4" },
     _react2.default.createElement(
       "div",
-      { className: "card-block" },
+      { className: "card" },
       _react2.default.createElement(
-        "h5",
-        { className: "text-bold" },
-        props.note.title
-      ),
-      _react2.default.createElement(
-        "ul",
-        null,
-        props.note.notes.map((_notes, i) => {
-          return _react2.default.createElement(
-            "li",
-            { key: i },
-            _notes
-          );
-        })
+        "div",
+        { className: "card-block" },
+        _react2.default.createElement(
+          "h5",
+          { className: "text-bold" },
+          props.note.title
+        ),
+        _react2.default.createElement(
+          "ul",
+          null,
+          props.note.notes.map((_notes, i) => {
+            return _react2.default.createElement(
+              "li",
+              { key: i },
+              _notes
+            );
+          })
+        )
       )
     )
   );
@@ -55,14 +59,10 @@ class Notes extends _react.Component {
       { className: "container" },
       _react2.default.createElement(
         "div",
-        { className: "row" },
-        _react2.default.createElement(
-          "div",
-          { className: "col-sm-6 col-md-4 col-lg-3 mt-4" },
-          this.state.notes.map((note, i) => {
-            return _react2.default.createElement(Note, { key: i, note: note });
-          })
-        )
+        { className: "row inline-block" },
+        this.state.notes.map((note, i) => {
+          return _react2.default.createElement(Note, { key: i, note: note });
+        })
       )
     );
   }
