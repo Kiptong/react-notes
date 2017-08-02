@@ -11,7 +11,7 @@ function handleSubmit(event) {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
-    }
+    },
     body: json
   })
 }

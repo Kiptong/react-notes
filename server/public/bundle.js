@@ -18,7 +18,13 @@ function handleSubmit(event) {
     title: data.get('title'),
     notes: data.get('notes')
   });
-  console.log(json);
+  fetch('/generate', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: json
+  });
 }
 
 class CreateNote extends _react.Component {
