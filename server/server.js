@@ -17,14 +17,17 @@ app.use(bodyParser.json())
 app.post('/generate', (req, res) => {
   const note = req.body
 
-  const query = knex
-    .insert(note)
-    .into('notes')
-    .returning('*')
-
-  query
-    .then((data) => res.json(data))
-    .catch((error) => console.log(error))
+  console.log(note)
+  
+  // const query = knex
+  //   .insert(note)
+  //   .into('notes')
+  //   .returning('*')
+  //
+  // console.log(query)
+  // query
+  //   .then((data) => res.json(data))
+  //   .catch((error) => console.log(error))
 })
 
 app.get('/notes', (req, res) => {

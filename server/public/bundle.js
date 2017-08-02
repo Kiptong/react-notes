@@ -16,7 +16,7 @@ function handleSubmit(event) {
   const data = new FormData(event.target);
   const json = JSON.stringify({
     title: data.get('title'),
-    notes: data.get('note')
+    notes: data.get('notes')
   });
   console.log(json);
 }
