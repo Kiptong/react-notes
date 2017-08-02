@@ -14,7 +14,7 @@ const staticMiddleware = express.static(publicPath)
 app.use(staticMiddleware)
 app.use(bodyParser.json())
 
-app.post('/generate', (req, res) => {
+app.post('/notes', (req, res) => {
   const note = req.body
 
   const query = knex
@@ -23,7 +23,7 @@ app.post('/generate', (req, res) => {
       .returning('*')
 
   query
-    .then((data) => res.json(data))
+    .then((data) => res.json(data[0]))
     .catch((error) => console.log(error))
 })
 
