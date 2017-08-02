@@ -14,6 +14,19 @@ const staticMiddleware = express.static(publicPath)
 app.use(staticMiddleware)
 app.use(bodyParser.json())
 
+app.post('/notes', (req, res) => {
+  const note = req.body
+
+  const query = knex
+      .insert(note)
+      .into('notes')
+      .returning('*')
+
+  query
+    .then((data) => res.json(data[0]))
+    .catch((error) => console.log(error))
+})
+
 app.get('/notes', (req, res) => {
   const noteQuery = knex.select().table('notes')
 
