@@ -35,4 +35,4 @@ app.get('/notes', (req, res) => {
     .catch(() => res.status(500).json({error: 'Error in fetching notes'}))
 })
 
-app.listen(3000, () => console.log('Listening on 3000'))
+app.listen(process.env.PORT, () => console.log('Listening on 3000'))
