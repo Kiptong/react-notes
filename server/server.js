@@ -1,10 +1,11 @@
+const dotenv = require('dotenv').config()
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
 const Knex = require('knex')
 const knex = Knex({
   dialect: 'pg',
-  connection: 'postgres://localhost:5432/notes'
+  connection: process.env.DATABASE_URL
 })
 
 const app = express()
