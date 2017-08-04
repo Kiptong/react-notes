@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "node server/server.js",
-    "bundle": "browserify -t babelify main.js -o server/public/bundle.js",
+    "bundle": "browserify -d -t babelify main.js -o server/public/bundle.js",
     "test": "mocha test/"
   },
   "keywords": [],
