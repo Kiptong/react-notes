@@ -1,8 +1,19 @@
-import ReactDOM from 'react-dom'
 import React from 'react'
-import App from './app'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import store from './store'
+import Notification from './components/notification'
 
 ReactDOM.render(
-  <App />,
-  document.getElementById('root')
+  <Provider store={ store }>
+    <Notification/>
+  </Provider>,
+  document.querySelector('#app')
 )
+
+setInterval(function () {
+  store.dispatch({
+    type: 'MESSAGE_RECEIVED',
+    payload: { text: 'Orange County Code School' }
+  })
+}, 2000)
