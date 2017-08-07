@@ -1,15 +1,20 @@
 {
   "name": "babelify-react-jsx",
   "version": "1.0.0",
+  "engines": {
+    "node": "8"
+  },
   "description": "",
   "main": "index.js",
   "scripts": {
-    "db:make":"pg-bump create",
-    "db:up":"pg-bump up",
-    "db:down":"pg-bump down",
+    "db:make": "pg-bump create",
+    "db:up": "pg-bump up",
+    "db:down": "pg-bump down",
     "start": "node server/server.js",
     "bundle": "browserify -d -t babelify main.js -o server/public/bundle.js",
-    "test": "mocha test/"
+    "test": "mocha test/",
+    "postinstall": "npm run bundle",
+    "heroku-postbuild": "npm run db:up"
   },
   "keywords": [],
   "author": "",
@@ -31,6 +36,8 @@
     "knex": "^0.13.0",
     "pg": "^7.0.2",
     "react": "^15.6.1",
-    "react-dom": "^15.6.1"
+    "react-dom": "^15.6.1",
+    "react-redux": "^5.0.5",
+    "redux": "^3.7.2"
   }
 }
