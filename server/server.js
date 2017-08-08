@@ -1,4 +1,4 @@
-require('dotenv').config()
+require('dotenv/config')
 const express = require('express')
 const path = require('path')
 const bodyParser = require('body-parser')
@@ -17,7 +17,7 @@ app.use(bodyParser.json())
 
 app.post('/notes', (req, res) => {
   const note = req.body
-
+  
   const query = knex
       .insert(note)
       .into('notes')
@@ -29,11 +29,14 @@ app.post('/notes', (req, res) => {
 })
 
 app.get('/notes', (req, res) => {
-  const noteQuery = knex.select().table('notes')
+  const noteQuery = knex.select('*').from('notes')
 
   noteQuery
     .then((data) => res.json(data))
-    .catch(() => res.status(500).json({error: 'Error in fetching notes'}))
+    .catch((err) => {
+      res.status(500).json({error: 'Error in fetching notes'})
+      console.log(err)
+    })
 })
 
 app.listen(process.env.PORT, () => console.log('Listening on 3000'))

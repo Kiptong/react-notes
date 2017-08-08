@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import Notes from './components/notes-list'
 import CreateNote from './components/create-note'
+import ReactDOM from 'react-dom'
 
 export default class App extends Component {
   constructor(props) {
@@ -9,17 +10,17 @@ export default class App extends Component {
     this.saveNote = this.saveNote.bind(this)
   }
   async componentDidMount() {
-    const res = await fetch('localhost:3000/notes')
+    const res = await fetch('/notes')
     const notes = await res.json()
     this.setState({ notes })
   }
-  async saveNote(note) {
+  async saveNote(userData) {
     const res = await fetch('/notes', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: note
+      body: JSON.stringify(userData)
     })
     const newNote = await res.json()
     console.log(newNote)
@@ -34,3 +35,8 @@ export default class App extends Component {
     )
   }
 }
+
+ReactDOM.render(
+  <App />,
+  document.querySelector('#app')
+)

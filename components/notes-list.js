@@ -5,8 +5,7 @@ function Note(props) {
     <div className="col-sm-6 col-md-4 col-lg-3 mt-4">
       <div className="card">
           <div className="card-block">
-            <h3 className="text-bold">{ props.note.title }</h3>
-            <p>{ props.note.notes }</p>
+            <p>{ props.note.note }</p>
           </div>
       </div>
     </div>

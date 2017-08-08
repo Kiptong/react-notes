@@ -1,8 +1,7 @@
 -- up
 CREATE TABLE notes (
-  id          serial,
-  title       text,
-  notes       text
+  id        serial,
+  note      varchar
 )
 ---
 DROP TABLE notes
