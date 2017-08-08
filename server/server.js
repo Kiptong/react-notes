@@ -1,6 +1,6 @@
 require('dotenv/config')
-const path = require('path')
 const express = require('express')
+const path = require('path')
 const bodyParser = require('body-parser')
 const knex = require('knex')({
   dialect: 'pg',
@@ -13,30 +13,32 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 app.use(bodyParser.json())
 
-app.get('/notes', async (req, res) => {
-  const notes = await knex
-    .select('*')
-    .from('notes')
-    .orderBy('created_at', 'desc')
-  res.json(notes)
+app.post('/notes', (req, res) => {
+  const note = req.body
+
+  const query = knex
+      .insert(note)
+      .into('notes')
+      .returning('*')
+
+      query
+        .then((data) => res.json(data[0]))
+        .catch((error) => console.log(error))
 })
 
-app.post('/notes', async (req, res) => {
-  const [ note ] = await knex
-    .insert(req.body)
-    .into('notes')
-    .returning('*')
-  res.status(201).json(note)
+app.get('/notes', (req, res) => {
+  const noteQuery = knex.select('*').from('notes')
+
+  noteQuery
+    .then((data) => res.json(data))
+    .catch((err) => {
+      res.status(500).json({error: 'Error in fetching notes'})
+      console.log(err)
+    })
 })
 
-app.delete('/notes/:id', async (req, res) => {
-  await knex
-    .delete()
-    .from('notes')
-    .where({ id: req.params.id })
-    .returning('*')
-  res.sendStatus(204)
-})
+
+
 
 app.listen(process.env.PORT, () => {
   console.log('listening on port', process.env.PORT)
