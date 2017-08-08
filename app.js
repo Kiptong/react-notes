@@ -9,7 +9,7 @@ export default class App extends Component {
     this.saveNote = this.saveNote.bind(this)
   }
   async componentDidMount() {
-    const res = await fetch('/notes')
+    const res = await fetch('localhost:3000/notes')
     const notes = await res.json()
     this.setState({ notes })
   }
